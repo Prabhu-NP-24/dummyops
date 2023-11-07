@@ -1,0 +1,26 @@
+---
+- name: Install Apache on localhost
+  hosts: localhost
+  become: true  # Run tasks with elevated privileges (sudo)
+
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'  # Use 'yum' for Red Hat based systems
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == 'Debian'  # Use 'yum' for Red Hat based systems
+
+    # - name: Start Apache service
+    #   service:
+    #     name: apache2
+    #     state: started
+    
+    - name: Stop Apache service
+      service:
+        name: apache2
+        state: stopped
