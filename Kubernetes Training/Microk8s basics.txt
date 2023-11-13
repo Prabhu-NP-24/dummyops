@@ -1,0 +1,30 @@
+Installation 
+    sudo snap install microk8s --classic
+
+Start microk8s
+    microk8s start
+
+
+
+Here is a list of MicroK8s commands:
+
+microk8s add-node: Adds a node to the Kubernetes cluster.
+microk8s addons: Manage MicroK8s addons.
+microk8s config: Manage MicroK8s configuration.
+microk8s ctr: Container registry client.
+microk8s dashboard-proxy: Starts a proxy to the Kubernetes dashboard.
+microk8s dbctl: Database client for MicroK8s.
+microk8s disable: Disables MicroK8s.
+microk8s enable: Enables MicroK8s.
+microk8s images: Manage Docker images on MicroK8s.
+microk8s inspect: Inspects the MicroK8s cluster.
+microk8s join: Joins a node to an existing Kubernetes cluster.
+microk8s kubectl: Kubernetes command-line tool.
+microk8s leave: Removes a node from the Kubernetes cluster.
+microk8s refresh-certs: Refreshes the MicroK8s certificates.
+microk8s remove-node: Removes a node from the Kubernetes cluster.
+microk8s reset: Resets MicroK8s to its default state.
+microk8s start: Starts the MicroK8s cluster.
+microk8s status: Displays the status of the MicroK8s cluster.
+microk8s stop: Stops the MicroK8s cluster.
+microk8s version: Displays the version of MicroK8s.
