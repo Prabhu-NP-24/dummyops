@@ -1,0 +1,22 @@
+---
+- name: Delete Microk8s Service
+  hosts: localhost
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: Stop Microk8s 
+      ansible.builtin.command:
+        microk8s stop
+      ignore_errors: yes
+    
+    - name: uninstall Microk8s 
+      ansible.builtin.command:
+        snap remove microk8s
+      ignore_errors: yes
+    
+    - name: Delete any residual Microk8s files
+      ansible.builtin.file:
+        path: /var/snap/microk8s
+        state: absent
+      ignore_errors: yes
