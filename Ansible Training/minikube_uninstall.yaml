@@ -1,0 +1,39 @@
+---
+- name: Uninstall Minikube
+  hosts: localhost
+  become: True
+  gather_facts: yes
+
+  tasks:
+    - name: Stop Minikube Cluster
+      ansible.builtin.command:
+        minikube stop
+      ignore_errors: yes
+    
+    - name: Remove Minikube 
+      ansible.builtin.command:
+        minikube delete
+      ignore_errors: yes
+    
+    - name: Remove Minikube Binary
+      file:
+        path: "/usr/local/bin/minikube"
+        state: absent
+    
+    - name: Remove Minikube Configuration
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "~/.minikube"
+        - "~/.kube/config"
+
+    - name: Remove Minikube Systemd Service
+      systemd:
+        name: snap.minikube.daemon
+        state: stopped
+        enabled: no
+
+    - name: Remove Minikube Snap Package
+      command: snap remove minikube
+      ignore_errors: yes
