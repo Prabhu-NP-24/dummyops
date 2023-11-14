@@ -28,11 +28,11 @@
         - "~/.minikube"
         - "~/.kube/config"
 
-    - name: Remove Minikube Systemd Service
-      systemd:
-        name: snap.minikube.daemon
-        state: stopped
-        enabled: no
+    # - name: Remove Minikube Systemd Service
+    #   systemd:
+    #     name: snap.minikube.daemon
+    #     state: stopped
+    #     enabled: no
 
     - name: Remove Minikube Snap Package
       command: snap remove minikube
