@@ -1,0 +1,25 @@
+---
+- name: Install MicroK8S Kubernetes service
+  hosts: localhost
+  become: true # run with sudo privileges
+  gather_facts: yes # to gather the facts after executing
+
+  tasks:
+    - name: Install MicroK8S
+      community.general.snap:
+        name:
+          - microk8s
+        classic: yes
+        state: present
+    
+    - name: Check MicroK8S status
+      ansible.builtin.command:
+        microk8s status --wait-ready
+      register: status_output
+      retries: 5
+      delay: 10
+    
+    - name: Start MicroK8S
+      ansible.builtin.command:
+        microk8s start
+    
