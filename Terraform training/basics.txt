@@ -1,0 +1,83 @@
+Here is a list of some commonly used Terraform commands:
+
+terraform init:
+
+Initializes a Terraform working directory by downloading providers and setting up backend.
+bash
+Copy code
+terraform init
+terraform plan:
+
+Creates an execution plan, showing what Terraform will do before actually doing it.
+bash
+Copy code
+terraform plan
+terraform apply:
+
+Applies the changes required to reach the desired state of the configuration.
+bash
+Copy code
+terraform apply
+terraform destroy:
+
+Destroys the Terraform-managed infrastructure.
+bash
+Copy code
+terraform destroy
+terraform validate:
+
+Validates the syntax and format of the Terraform files.
+bash
+Copy code
+terraform validate
+terraform fmt:
+
+Rewrites Terraform configuration files to a canonical format.
+bash
+Copy code
+terraform fmt
+terraform get:
+
+Downloads and installs modules needed for the configuration.
+bash
+Copy code
+terraform get
+terraform graph:
+
+Creates a visual representation of a configuration or execution plan.
+bash
+Copy code
+terraform graph
+terraform show:
+
+Displays the current state or a saved plan.
+bash
+Copy code
+terraform show
+terraform state:
+
+Advanced state management commands, such as list, show, mv, rm.
+bash
+Copy code
+terraform state list
+terraform state show <resource_type.resource_name>
+terraform import:
+Associates an existing resource with a Terraform resource configuration.
+bash
+Copy code
+terraform import <resource_type.resource_name> <existing_resource_id>
+terraform output:
+Shows the values of Terraform outputs.
+bash
+Copy code
+terraform output
+terraform refresh:
+Updates the state file according to the real-world infrastructure.
+bash
+Copy code
+terraform refresh
+These are some of the fundamental Terraform commands. You can get a comprehensive list and detailed information by running:
+
+bash
+Copy code
+terraform --help
