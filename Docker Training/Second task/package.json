@@ -1,0 +1,9 @@
+{
+    "name": "docker-node-app",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "node index.js",
+      "build": "echo 'Build script placeholder'"  
+    }
+  }
+  
