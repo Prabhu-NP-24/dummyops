@@ -1,0 +1,11 @@
+Apply
+    - kubectl apply -f <file-name.yml>
+
+Check 
+    - kubectl get deployments
+
+Expose a port
+    - kubectl expose deployment <dep-name> --type=NodePort --port=80
+
+Get url of a deployment
+    - minikube service <dep-name> url
