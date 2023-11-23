@@ -1,0 +1,41 @@
+# Specifies the API version of the Kubernetes resources being defined.
+apiVersion: apps/v1
+# Specifies the type of Kubernetes resource being created, which is a Deployment in this case.
+kind: Deployment
+# Contains metadata about the Deployment, such as its name.
+metadata:
+  name: task-2
+
+# Describes the desired state of the Deployment.
+spec:
+  # Specifies the number of desired replicas (pods) for the application.
+  replicas: 3
+  # Defines how the Deployment identifies which pods to manage.
+  selector:
+    matchLabels:
+      app: hello-world
+  
+  # Describes the pod template, which is used as a blueprint for creating new pods controlled by the Deployment.
+  template:
+    metadata:
+      # Assigns the label app: hello-world to pods created from this template.
+      labels:
+        app: hello-world
+    
+    #  Defines the specification of the pod.
+    spec:
+      # Describes the containers that should run in the pod.
+      containers:
+      - name: hello-world
+        image: nginx:latest
+        # Specifies the ports to open in the container. In this case, it opens port 80.
+        ports:
+        - containerPort: 80
+        # Specifies the resource requests and limits for the container.
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
