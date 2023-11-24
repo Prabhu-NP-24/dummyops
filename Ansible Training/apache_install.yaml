@@ -15,12 +15,12 @@
         state: present
       when: ansible_os_family == 'Debian'  # Use 'yum' for Red Hat based systems
 
-    # - name: Start Apache service
-    #   service:
-    #     name: apache2
-    #     state: started
-    
-    - name: Stop Apache service
+    - name: Start Apache service
       service:
         name: apache2
-        state: stopped
+        state: started
+    
+    # - name: Stop Apache service
+    #   service:
+    #     name: apache2
+    #     state: stopped

@@ -1,0 +1,23 @@
+# deploy_website.yml
+---
+- name: Deploy Website
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Start Apache service
+      service:
+        name: apache2
+        state: started
+      notify: restart apache
+
+    - name: Copy the files
+      copy:
+        src: roles/web/files/index.html
+        dest: /var/www/html/index.html
+      notify: restart apache
+
+  handlers:
+  - name: restart apache
+    service:
+      name: apache2
+      state: restarted
