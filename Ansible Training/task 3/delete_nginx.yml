@@ -1,0 +1,9 @@
+---
+- name : Delete NGINX
+  hosts : localhost
+  become : true
+  tasks :
+    - name : Delete NGINX
+      apt : 
+        name : nginx
+        state : absent
