@@ -1,0 +1,13 @@
+# install_nginx.yml
+---
+- name: Install Nginx
+  hosts: localhost
+  become: true
+  vars:
+    nginx_version: "1.18.0-6ubuntu14.4"  # Choose an available version
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: "nginx={{ nginx_version }}"
+        state: present

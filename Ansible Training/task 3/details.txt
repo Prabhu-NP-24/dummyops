@@ -1,0 +1,1 @@
+Installing the NGINX server using vars in Ansible
