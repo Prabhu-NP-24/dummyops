@@ -1,0 +1,7 @@
+# install_remove_web_server.yml
+---
+- name: Install and Remove Web Server
+  hosts: localhost
+  become: true
+  roles:
+    - webserver

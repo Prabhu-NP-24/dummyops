@@ -1,0 +1,12 @@
+# roles/web_server/tasks/main.yml
+---
+- name: Install Web Server
+  apt:
+    name: "{{ web_server_type }}={{ web_server_version }}"
+    state: present
+  notify: restart web server
+
+- name: Remove Web Server
+  apt:
+    name: "{{ web_server_type }}"
+    state: absent
