@@ -1,0 +1,4 @@
+# roles/web_server/defaults/main.yml
+---
+web_server_type: "nginx"
+web_server_version: "1.18.0-6ubuntu14.4"

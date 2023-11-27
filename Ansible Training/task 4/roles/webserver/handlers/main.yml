@@ -1,0 +1,6 @@
+# roles/web_server/handlers/main.yml
+---
+- name: restart web server
+  service:
+    name: "{{ web_server_type }}"
+    state: restarted
