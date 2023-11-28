@@ -1,0 +1,67 @@
+Task 6: Docker Networking
+Create a Custom Docker Network:
+Start by creating a custom Docker network. Open a terminal and run:
+
+bash
+Copy code
+docker network create my-network
+This command creates a Docker network named my-network.
+
+Run Two Containers on the Custom Network:
+Run two containers on the newly created network. Use a simple NGINX container for this example:
+
+bash
+Copy code
+# Run the first container
+docker run -d --name nginx-1 --network my-network nginx
+
+# Run the second container
+docker run -d --name nginx-2 --network my-network nginx
+These commands start two NGINX containers named nginx-1 and nginx-2 and connect them to the my-network network.
+
+Inspect the Custom Network:
+Inspect the custom network to view details about the containers and their IP addresses:
+
+bash
+Copy code
+docker network inspect my-network
+Look for the "Containers" section in the output, which shows information about the containers connected to the network.
+
+Communicate Between Containers:
+Access the shell of one of the containers to test communication. For example, access the shell of nginx-1:
+
+bash
+Copy code
+docker exec -it nginx-1 /bin/bash
+Once inside the container, try to ping the other container by its name:
+
+bash
+Copy code
+ping nginx-2
+You should see successful pings, indicating that the containers can communicate over the custom network.
+
+Create a User-Defined Bridge Network:
+Create a user-defined bridge network and connect a container to it. This type of network allows containers to communicate with each other using container names.
+
+bash
+Copy code
+# Create a user-defined bridge network
+docker network create --driver bridge my-bridge-network
+
+# Run a container on the bridge network
+docker run -d --name my-container --network my-bridge-network nginx
+This creates a new user-defined bridge network named my-bridge-network and runs an NGINX container named my-container on it.
+
+Inspect the User-Defined Bridge Network:
+Inspect the user-defined bridge network to view details about the containers and their IP addresses:
+
+bash
+Copy code
+docker network inspect my-bridge-network
+Explore the "Containers" section in the output.
+
+Optional Additional Steps:
+Experiment with different network drivers in Docker, such as overlay networks for multi-host communication.
+Explore Docker Compose networking options and how they facilitate communication between services.
+Investigate Docker's DNS resolution for container names and how it simplifies communication between containers.
+This task will enhance your understanding of Docker networking, which is crucial for orchestrating and managing communication between containers. If you have any questions or run into issues, feel free to ask!
