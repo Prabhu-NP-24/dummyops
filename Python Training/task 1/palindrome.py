@@ -4,8 +4,8 @@ user_input = input("Enter the phrase : ")
 
 def is_palindrome(input):
     
-    clean_phrase = ''.join(char.lower() for char in input if char.isalnum())
+    new = ''.join(car.lower() for car in input if car.isalnum())
     
-    return clean_phrase == clean_phrase[:: -1]
+    return new == new[:: -1]
 
 print(is_palindrome(user_input))

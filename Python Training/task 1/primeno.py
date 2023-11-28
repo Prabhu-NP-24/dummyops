@@ -11,14 +11,14 @@ user_input = int(input("Enter a number : "))
 
 def is_prime(user_input):
     
-    if user_input < 2 :
-        return False
-    
-    for i in range(2, int(user_input ** 0.5) + 1):
-        if user_input % i == 0:
-            return False
-    
-    return True
+   if user_input < 2 :
+       return False
+   
+   for i in range(2, int(user_input ** 0.5) + 1) :
+       if user_input % i == 0 :
+           return False
+   
+   return True
 
 answer = is_prime(user_input)
 
