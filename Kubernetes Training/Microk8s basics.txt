@@ -1,5 +1,5 @@
 Installation 
-    sudo snap install microk8s --classic
+    sudo snap install microk8s --classic 
 
 Start microk8s
     microk8s start
