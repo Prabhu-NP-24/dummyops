@@ -1,0 +1,28 @@
+# deploy_webpage.yml
+---
+- name: Deploy Webpage
+  hosts: localhost
+  become: true
+  vars:
+    web_server_type: "nginx"  # Change to "apache" if you prefer Apache
+    webpage_title: "Red's Ansible Webpage"
+    welcome_message: "Welcome to Ansible Automation!"
+
+  tasks:
+    - name: Install Web Server
+      apt:
+        name: "{{ web_server_type }}"
+        state: present
+      notify: restart web server
+
+    - name: Deploy Webpage
+      template:
+        src: index.html.j2
+        dest: "/var/www/html/index.html"
+      notify: restart web server
+
+  handlers:
+    - name: restart web server
+      service:
+        name: "{{ web_server_type }}"
+        state: restarted
