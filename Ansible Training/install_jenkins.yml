@@ -1,0 +1,50 @@
+---
+- name: Install Jenkins
+  hosts: localhost
+  become: true  # Run tasks with sudo
+
+  tasks:
+    - name: Update apt repositories (for Ubuntu/Debian)
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
+    - name: Install Java OpenJDK
+      package:
+        name: openjdk-11-jdk
+        state: present
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Add Jenkins repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Add Jenkins repository (for Ubuntu)
+      apt_repository:
+        repo: 'deb http://pkg.jenkins.io/debian-stable binary/'
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Install Jenkins (for Ubuntu)
+      package:
+        name: jenkins
+        state: present
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Start Jenkins service
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+
+    - name: Print initial Jenkins admin password
+      command: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: jenkins_admin_password
+      changed_when: false
+      failed_when: jenkins_admin_password.stdout == ""
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Display initial admin password
+      debug:
+        var: jenkins_admin_password.stdout_lines
+      when: ansible_distribution == 'Ubuntu'
