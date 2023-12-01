@@ -1,0 +1,23 @@
+# deploy_web_servers.yml
+---
+- name: Deploy Web Servers
+  hosts: web_servers
+  become: true
+
+  tasks:
+    - name: Install Web Server
+      apt:
+        name: "{{ web_server_type }}"
+        state: present
+      notify: restart web server
+
+    - name: Deploy Webpage
+      template:
+        src: templates/index.html.j2
+        dest: "/var/www/html/index.html"
+      notify: restart web server
+
+  handlers:
+    - include_role:
+        name: web_server
+        tasks_from: handlers/main.yml

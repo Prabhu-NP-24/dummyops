@@ -1,0 +1,13 @@
+---
+- name : Manage a user
+  hosts : localhost
+  become : true
+  vars : 
+    user_name : 'ansibleuser'
+    user_state : 'present' # absent to remove the user 
+  
+  tasks :
+    - name : Add user
+      ansible.builtin.user:
+        name : "{{user_name}}"
+        state: "{{user_state}}"
