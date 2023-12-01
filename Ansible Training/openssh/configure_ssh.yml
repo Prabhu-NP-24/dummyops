@@ -1,0 +1,24 @@
+---
+- name : Configure OpenSSH server
+  hosts : localhost
+  become : true
+  vars : 
+    openssh_name : "openssh-server"
+  
+  tasks : 
+    - name : Install OpenSSH
+      ansible.builtin.apt:
+        name : "{{openssh_name}}"
+        state : present
+    
+    - name : Ensure SSH is running
+      ansible.builtin.service:
+        name: sshd
+        state: started
+        enabled: yes
+    
+    - name : Open the port in firewall
+      ansible.builtin.ufw:
+        rule: allow
+        port: 22
+        proto: tcp

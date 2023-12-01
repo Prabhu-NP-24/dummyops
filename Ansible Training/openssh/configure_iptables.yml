@@ -1,0 +1,30 @@
+# configure_ssh.yml
+---
+- name: Configure OpenSSH
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Install OpenSSH
+      apt:
+        name: openssh-server
+        state: present
+
+    - name: Ensure OpenSSH service is running
+      systemd:
+        name: sshd
+        state: started
+        enabled: yes
+
+    - name: Allow SSH traffic through iptables
+      iptables:
+        name: Allow SSH
+        rule: "-A INPUT -p tcp --dport 22 -j ACCEPT"
+        state: present
+      notify: restart iptables
+
+  handlers:
+    - name: restart iptables
+      service:
+        name: iptables
+        state: restarted
