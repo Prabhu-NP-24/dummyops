@@ -1,0 +1,29 @@
+# deploy_web_app.yml
+---
+- name: Deploy Flask Web Application
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Install Python
+      apt:
+        name: python3
+        state: present
+
+    - name: Install Flask
+      pip:
+        name: flask
+        state: present
+
+    - name: Create Flask App Directory
+      file:
+        path: /opt/flask_app
+        state: directory
+
+    - name: Copy Flask App Files
+      copy:
+        src: app.py
+        dest: /opt/flask_app/app.py
+
+    - name: Start Flask App
+      command: "python3 /opt/flask_app/app.py &"
