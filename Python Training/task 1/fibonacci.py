@@ -12,6 +12,19 @@ def fibonacci(user_input):
     
     return base_value
 
+# using a generator function
+def fib_gen():
+    
+    a,b = 0,1
+    while True:
+        yield a
+        a,b = b, a+b
+
+fib_gene = fib_gen()
+
+for i in range(10):
+    print(next(fib_gene))
+
 fibo = fibonacci(user_input)
 
 print(fibo)
